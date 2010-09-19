@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="category">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="recipe" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="cookbook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="category" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ingredient">
+    <xs:complexType>
+      <xs:attribute name="units" use="required" type="xs:string" />
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="amount" type="xs:double" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="instruction">
+    <xs:complexType>
+      <xs:attribute name="units" use="required" type="xs:integer" />
+    </xs:complexType>  
+  </xs:element>
+
+  <xs:element name="recipe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ingredient" maxOccurs="unbounded" />
+        <xs:element ref="instruction" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:attribute name="imgLoc" type="xs:string" use="optional" />
+      <xs:attribute name="author" type="xs:string" use="optional" />
+      <xs:attribute name="title" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
