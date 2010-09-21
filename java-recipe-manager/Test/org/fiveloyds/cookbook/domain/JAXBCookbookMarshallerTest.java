@@ -10,11 +10,7 @@ public class JAXBCookbookMarshallerTest extends TestCase {
 
 	public void testMarshaller() {
 		try {
-			File t = new File(
-			"test\\cookbook.xml");
-			
-			System.out.println(t.getAbsolutePath());
-			
+			File t = new File("test\\cookbook.xml");
 			String xmlString = FileUtils.readFileToString(t);
 
 			JAXBCookbookMarshaller marshaller = new JAXBCookbookMarshaller();
@@ -22,7 +18,7 @@ public class JAXBCookbookMarshallerTest extends TestCase {
 			String XML = marshaller.convertCookbookToXMLString(c);
 
 			System.out.println(XML);
-			
+
 			assertEquals(xmlString, XML);
 		} catch (Exception e) {
 			throw new RuntimeException(e);

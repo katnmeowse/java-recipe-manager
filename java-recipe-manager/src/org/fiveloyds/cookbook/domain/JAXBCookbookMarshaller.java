@@ -8,6 +8,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.w3c.dom.Node;
+
 public class JAXBCookbookMarshaller {
 	private final Marshaller _marshaller;
 	private final Unmarshaller _unmarshaller;
@@ -43,5 +45,10 @@ public class JAXBCookbookMarshaller {
 			throws JAXBException {
 		return (Cookbook) getUnmarshaller().unmarshal(
 				new StringReader(xmlString));
+	}
+	
+	public Object getObject(Node node) throws JAXBException
+	{
+		return getUnmarshaller().unmarshal(node);
 	}
 }
