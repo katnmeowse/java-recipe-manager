@@ -9,7 +9,6 @@ package org.fiveloyds.cookbook.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -34,7 +33,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}recipe" maxOccurs="unbounded"/>
+ *         &lt;element ref="{}ingredient" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
@@ -45,42 +44,43 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "recipe" })
-@XmlRootElement(name = "category")
-public class Category {
+@XmlType(name = "", propOrder = { "ingredient" })
+@XmlRootElement(name = "ingredientSet")
+public class IngredientSet {
 
 	@XmlElement(required = true)
-	protected List<Recipe> recipe;
+	protected List<Ingredient> ingredient;
 	@XmlAttribute(required = true)
 	protected String name;
 
 	/**
-	 * Gets the value of the recipe property.
+	 * Gets the value of the ingredient property.
 	 * 
 	 * <p>
 	 * This accessor method returns a reference to the live list, not a
 	 * snapshot. Therefore any modification you make to the returned list will
 	 * be present inside the JAXB object. This is why there is not a
-	 * <CODE>set</CODE> method for the recipe property.
+	 * <CODE>set</CODE> method for the ingredient property.
 	 * 
 	 * <p>
 	 * For example, to add a new item, do as follows:
 	 * 
 	 * <pre>
-	 * getRecipe().add(newItem);
+	 * getIngredient().add(newItem);
 	 * </pre>
 	 * 
 	 * 
 	 * <p>
-	 * Objects of the following type(s) are allowed in the list {@link Recipe }
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link Ingredient }
 	 * 
 	 * 
 	 */
-	public List<Recipe> getRecipeList() {
-		if (recipe == null) {
-			recipe = new ArrayList<Recipe>();
+	public List<Ingredient> getIngredient() {
+		if (ingredient == null) {
+			ingredient = new ArrayList<Ingredient>();
 		}
-		return this.recipe;
+		return this.ingredient;
 	}
 
 	/**
@@ -103,24 +103,24 @@ public class Category {
 	public void setName(String value) {
 		this.name = value;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Category == false) {
+		if (obj instanceof IngredientSet == false) {
 			return false;
 		}
 		if (this == obj) {
 			return true;
 		}
-		Category rhs = (Category) obj;
+		IngredientSet rhs = (IngredientSet) obj;
 		return new EqualsBuilder().appendSuper(super.equals(obj)).append(name,
-				rhs.name).append(recipe, rhs.recipe).isEquals();
+				rhs.name).append(ingredient, rhs.ingredient).isEquals();
 
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(11, 31).append(name).append(recipe)
+		return new HashCodeBuilder(14, 34).append(name).append(ingredient)
 				.toHashCode();
 
 	}
@@ -128,7 +128,6 @@ public class Category {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("name", name).append(
-				"recipeList", recipe).toString();
-	}	
-
+				"ingredientList", ingredient).toString();
+	}
 }
